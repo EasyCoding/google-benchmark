@@ -7,7 +7,7 @@ Release: 1%{?dist}
 
 License: ASL-2.0
 Summary: A microbenchmark support library
-URL: https://github.com/google/benchmark
+URL: https://github.com/google/%{intname}
 Source0: %{url}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
 
 BuildRequires: gtest-devel
