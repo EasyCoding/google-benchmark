@@ -36,15 +36,12 @@ sed -i 's@lib/@%{_lib}/@g' src/CMakeLists.txt
 pushd %{_target_platform}
     %cmake -G Ninja \
     -DCMAKE_BUILD_TYPE=Release \
-%ifarch s390x
     -DBENCHMARK_ENABLE_TESTING=OFF \
-%endif
     ..
 popd
 %ninja_build -C %{_target_platform}
 
 %check
-# Some tests are failing on s390x architecture.
 pushd %{_target_platform}
     ctest --output-on-failure
 popd
