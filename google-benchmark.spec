@@ -1,3 +1,5 @@
+%undefine __cmake_in_source_build
+
 %global intname benchmark
 %global lbname lib%{intname}
 
@@ -29,30 +31,27 @@ Requires: %{name}%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 
 %prep
 %autosetup -n %{intname}-%{version}
-mkdir -p %{_target_platform}
-sed -i 's@lib/@%{_lib}/@g' src/CMakeLists.txt
+sed -e '/get_git_version/d' -i CMakeLists.txt
 
 %build
-pushd %{_target_platform}
-    %cmake -G Ninja \
+%cmake -G Ninja \
     -DCMAKE_BUILD_TYPE=Release \
-    -DBENCHMARK_ENABLE_TESTING=OFF \
-    ..
-popd
-%ninja_build -C %{_target_platform}
+    -DGIT_VERSION=%{version} \
+    -DBENCHMARK_ENABLE_TESTING:BOOL=OFF \
+    -DBENCHMARK_ENABLE_INSTALL:BOOL=ON \
+    -DBENCHMARK_DOWNLOAD_DEPENDENCIES:BOOL=OFF
+%cmake_build
 
 %check
-pushd %{_target_platform}
-    ctest --output-on-failure
-popd
+%ctest
 
 %install
-%ninja_install -C %{_target_platform}
+%cmake_install
 
 %files
 %doc AUTHORS CONTRIBUTORS CONTRIBUTING.md README.md
 %license LICENSE
-%{_libdir}/%{lbname}*.so.0*
+%{_libdir}/%{lbname}*.so.1*
 
 %files devel
 %{_libdir}/%{lbname}*.so
@@ -63,6 +62,7 @@ popd
 %changelog
 * Sun Jul 19 2020 Vitaly Zaitsev <vitaly@easycoding.org> - 1.5.1-1
 - Updated to version 1.5.1.
+- Fixed RHBZ#1858127.
 
 * Wed Jan 29 2020 Fedora Release Engineering <releng@fedoraproject.org> - 1.5.0-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_32_Mass_Rebuild
