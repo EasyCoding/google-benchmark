@@ -4,8 +4,8 @@
 %global lbname lib%{intname}
 
 Name: google-benchmark
-Version: 1.5.1
-Release: 2%{?dist}
+Version: 1.5.2
+Release: 1%{?dist}
 
 License: ASL 2.0
 Summary: A microbenchmark support library
@@ -60,6 +60,9 @@ sed -e '/get_git_version/d' -i CMakeLists.txt
 %{_libdir}/pkgconfig/%{intname}.pc
 
 %changelog
+* Sat Sep 12 2020 Vitaly Zaitsev <vitaly@easycoding.org> - 1.5.2-1
+- Updated to version 1.5.2.
+
 * Tue Jul 28 2020 Fedora Release Engineering <releng@fedoraproject.org> - 1.5.1-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_33_Mass_Rebuild
 
