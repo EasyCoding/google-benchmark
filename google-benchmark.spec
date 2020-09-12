@@ -32,7 +32,7 @@ Requires: %{name}%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 %prep
 %autosetup -n %{intname}-%{version}
 sed -e '/get_git_version/d' -i CMakeLists.txt
-sed -e 's@/lib@/%{_lib}@g' -i CMakeLists.txt
+sed -e 's@/lib@/%{_lib}@g' -i cmake/benchmark.pc.in
 
 %build
 %cmake -G Ninja \
