@@ -5,12 +5,13 @@
 
 Name: google-benchmark
 Version: 1.5.2
-Release: 1%{?dist}
+Release: 3%{?dist}
 
 License: ASL 2.0
 Summary: A microbenchmark support library
 URL: https://github.com/google/%{intname}
 Source0: %{url}/archive/v%{version}/%{name}-%{version}.tar.gz
+Patch0: google-benchmark-gcc11.patch
 
 BuildRequires: gtest-devel
 BuildRequires: gmock-devel
@@ -30,7 +31,7 @@ Requires: %{name}%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 %{summary}.
 
 %prep
-%autosetup -n %{intname}-%{version}
+%autosetup -p1 -n %{intname}-%{version}
 sed -e '/get_git_version/d' -i CMakeLists.txt
 sed -e 's@/lib@/%{_lib}@g' -i cmake/benchmark.pc.in
 
@@ -61,6 +62,12 @@ sed -e 's@/lib@/%{_lib}@g' -i cmake/benchmark.pc.in
 %{_libdir}/pkgconfig/%{intname}.pc
 
 %changelog
+* Tue Jan 26 2021 Fedora Release Engineering <releng@fedoraproject.org> - 1.5.2-3
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild
+
+* Wed Oct 14 2020 Jeff Law <law@redhat.com> - 1.5.2-2
+- Fix missing #include for gcc-11
+
 * Sat Sep 12 2020 Vitaly Zaitsev <vitaly@easycoding.org> - 1.5.2-1
 - Updated to version 1.5.2.
 
