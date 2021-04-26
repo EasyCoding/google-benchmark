@@ -11,7 +11,6 @@ License: ASL 2.0
 Summary: A microbenchmark support library
 URL: https://github.com/google/%{intname}
 Source0: %{url}/archive/v%{version}/%{name}-%{version}.tar.gz
-Patch0: google-benchmark-gcc11.patch
 
 BuildRequires: gtest-devel
 BuildRequires: gmock-devel
