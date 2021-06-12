@@ -4,7 +4,7 @@
 %global lbname lib%{intname}
 
 Name: google-benchmark
-Version: 1.5.4
+Version: 1.5.5
 Release: 1%{?dist}
 
 License: ASL 2.0
@@ -61,6 +61,9 @@ sed -e '/get_git_version/d' -i CMakeLists.txt
 %{_libdir}/pkgconfig/%{intname}.pc
 
 %changelog
+* Sat Jun 12 2021 Vitaly Zaitsev <vitaly@easycoding.org> - 1.5.5-1
+- Updated to version 1.5.5.
+
 * Mon May 31 2021 Vitaly Zaitsev <vitaly@easycoding.org> - 1.5.4-1
 - Updated to version 1.5.4.
 
