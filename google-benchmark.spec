@@ -5,7 +5,7 @@
 
 Name: google-benchmark
 Version: 1.5.5
-Release: 1%{?dist}
+Release: 3%{?dist}
 
 License: ASL 2.0
 Summary: A microbenchmark support library
@@ -61,6 +61,12 @@ sed -e '/get_git_version/d' -i CMakeLists.txt
 %{_libdir}/pkgconfig/%{intname}.pc
 
 %changelog
+* Sat Jul 10 2021 Vitaly Zaitsev <vitaly@easycoding.org> - 1.5.5-3
+- Rebuilt again for the same reason.
+
+* Sat Jul 10 2021 Vitaly Zaitsev <vitaly@easycoding.org> - 1.5.5-2
+- Rebuilt due to glibc update.
+
 * Sat Jun 12 2021 Vitaly Zaitsev <vitaly@easycoding.org> - 1.5.5-1
 - Updated to version 1.5.5.
 
